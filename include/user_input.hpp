@@ -10,6 +10,7 @@
  */
 
 #ifndef USER_INPUT_H__
+#define USER_INPUT_H__
 
 #include "utils.hpp"
 

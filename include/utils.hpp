@@ -12,8 +12,8 @@
 #ifndef UTILS_H_
 #define UTILS_H_
 
-#include <stdint.h>
 #include <Arduino.h>
+#include <stdint.h>
 
 //Common Macros
 #define CONTROL_BIT(reg, index, command) ((command) == (0) ? (CLR_BIT(reg, index)) : (SET_BIT(reg, index)))
