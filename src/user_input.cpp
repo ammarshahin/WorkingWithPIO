@@ -50,9 +50,9 @@ void user_input_update(void)
             {
                 shift_registers_clear();
             }
-            else if (u8_received_date > MAX_NUMBER_OF_LOADS)
+            else if (u8_received_date < MAX_NUMBER_OF_LOADS)
             {
-                shift_registers_set(u8_received_date);
+                shift_registers_set(static_cast<uint32_t>(u8_received_date));
             }
             else
             {
