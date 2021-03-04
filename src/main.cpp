@@ -38,8 +38,8 @@ void clrData()
 
 void outData()
 {
-    shiftOut(SHIFT_DATA, SHIFT_CLK, LSBFIRST, gu32_internalBuffer >> 16);
-    shiftOut(SHIFT_DATA, SHIFT_CLK, LSBFIRST, gu32_internalBuffer >> 8);
+    shiftOut(SHIFT_DATA, SHIFT_CLK, MSBFIRST, gu32_internalBuffer >> 16);
+    shiftOut(SHIFT_DATA, SHIFT_CLK, MSBFIRST, gu32_internalBuffer >> 8);
     shiftOut(SHIFT_DATA, SHIFT_CLK, MSBFIRST, gu32_internalBuffer);
     digitalWrite(SHIFT_ENABLE, LOW);
     digitalWrite(SHIFT_ENABLE, HIGH);
