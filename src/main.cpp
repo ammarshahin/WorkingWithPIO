@@ -14,8 +14,6 @@
 #include "../include/shift_registers.hpp"
 #include "../include/user_input.hpp"
 
-#define debug 0
-
 void setup()
 {
     Serial.begin(9600);

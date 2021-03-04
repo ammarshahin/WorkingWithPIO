@@ -36,8 +36,7 @@ void blutooth_module_init(void)
     gx_internalBuffer.rx_internal_counter = 0;
     gb_dataReceived_flag = false;
 
-    // uart_init
-    //! FIXME:
+    // TODO: uart_init
 }
 
 void blutooth_module_update(void)
@@ -46,10 +45,10 @@ void blutooth_module_update(void)
     static uint8_t u8_internalTimeout = 0;
 
     // check if the data is received
-    if (0)   // (UART_RECV_COMPLETE_FLAG_CHECK())
+    if (0)   // TODO: (UART_RECV_COMPLETE_FLAG_CHECK())
     {
         u8_internalTimeout = 0;
-        // UART_DATA_GET(data_received);
+        // TODO: UART_DATA_GET(data_received);
         gx_internalBuffer.Buffer[gx_internalBuffer.rx_internal_counter] = data_received;
         gx_internalBuffer.rx_internal_counter++;
         if (gx_internalBuffer.rx_internal_counter == MAX_BUFFER_SIZE)

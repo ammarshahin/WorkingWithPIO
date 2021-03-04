@@ -14,7 +14,7 @@
 #include "../include/shift_registers.hpp"
 
 #define debug 1
-const uint8_t ALL_LOADS_OFF_COMMAND = 0xffu;
+const uint8_t ALL_LOADS_OFF_COMMAND = 255u;
 const uint8_t MAX_NUMBER_OF_LOADS = 24u;
 
 void user_input_init(void)
@@ -24,7 +24,6 @@ void user_input_init(void)
 
 void user_input_update(void)
 {
-
     static uint32_t u32_internal_timer = 0;
     u32_internal_timer++;
     if (u32_internal_timer >= 1000)
@@ -34,7 +33,7 @@ void user_input_update(void)
         static uint32_t x = 0;
         shift_registers_set(x);
         Serial.println(x);
-        if (x >= MAX_NUMBER_OF_LOADS)
+        if (x >= (MAX_NUMBER_OF_LOADS - 1))
         {
             x = 0;
             shift_registers_clear();
@@ -44,17 +43,16 @@ void user_input_update(void)
             x++;
         }
 #else
-
         if (blutooth_module_dataReceivedFlag_get() == true)
         {
-            = blutooth_module_data_get();
-            if (u16_received_date == ALL_LOADS_OFF_COMMAND)
+            uint8_t u8_received_date = blutooth_module_data_get();
+            if (u8_received_date == ALL_LOADS_OFF_COMMAND)
             {
                 shift_registers_clear();
             }
-            else if (u16_received_date > MAX_NUMBER_OF_LOADS)
+            else if (u8_received_date > MAX_NUMBER_OF_LOADS)
             {
-                shift_registers_set(u16_received_date);
+                shift_registers_set(u8_received_date);
             }
             else
             {
@@ -62,7 +60,6 @@ void user_input_update(void)
             }
             // leds_blinking_flag_set();
         }
-
 #endif
     }
 }

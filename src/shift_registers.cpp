@@ -40,9 +40,10 @@ void shift_registers_clear()
 
 void shift_registers_out()
 {
-    shiftOut(SHIFT_DATA_PIN, SHIFT_CLK_PIN, MSBFIRST, gu32_internalBuffer >> 16);
-    shiftOut(SHIFT_DATA_PIN, SHIFT_CLK_PIN, MSBFIRST, gu32_internalBuffer >> 8);
-    shiftOut(SHIFT_DATA_PIN, SHIFT_CLK_PIN, MSBFIRST, gu32_internalBuffer);
+    shiftOut(SHIFT_DATA_PIN, SHIFT_CLK_PIN, MSBFIRST, static_cast<uint8_t>(gu32_internalBuffer >> 16));
+    shiftOut(SHIFT_DATA_PIN, SHIFT_CLK_PIN, MSBFIRST, static_cast<uint8_t>(gu32_internalBuffer >> 8));
+    shiftOut(SHIFT_DATA_PIN, SHIFT_CLK_PIN, MSBFIRST, static_cast<uint8_t>(gu32_internalBuffer >> 0));
+
     digitalWrite(SHIFT_ENABLE_PIN, LOW);
     digitalWrite(SHIFT_ENABLE_PIN, HIGH);
     digitalWrite(SHIFT_ENABLE_PIN, LOW);
