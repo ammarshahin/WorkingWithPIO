@@ -18,6 +18,6 @@
 void blutooth_module_init(void);
 void blutooth_module_update(void);
 uint8_t blutooth_module_data_get(void);
-bool blutooth_module_dataReceivedFlag_get(void);
+bool blutooth_module_isDataReceived(void);
 
 #endif   //! BLUTOOTH_MODULE_H__

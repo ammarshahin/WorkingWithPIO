@@ -80,7 +80,7 @@ uint8_t blutooth_module_data_get(void)
     return gx_internalBuffer.read_data;
 }
 
-bool blutooth_module_dataReceivedFlag_get(void)
+bool blutooth_module_isDataReceived(void)
 {
     return gb_dataReceived_flag;
 }
@@ -88,9 +88,7 @@ bool blutooth_module_dataReceivedFlag_get(void)
 static uint32_t atoi(char *str)
 {
     uint32_t res = 0;
-    uint8_t i = 0;
-
-    for (i = 0; str[i] != '\0'; ++i)
+    for (uint8_t i = 0; str[i] != '\0'; ++i)
     {
         res = res * 10 + (str[i] - '0');
     }

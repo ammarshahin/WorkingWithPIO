@@ -42,7 +42,7 @@ void user_input_update(void)
             x++;
         }
 #else
-        if (blutooth_module_dataReceivedFlag_get() == true)
+        if (blutooth_module_isDataReceived())
         {
             uint8_t u8_received_date = blutooth_module_data_get();
             if (u8_received_date == ALL_LOADS_CONTROL_COMMAND)
