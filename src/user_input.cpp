@@ -14,7 +14,7 @@
 #include "../include/shift_registers.hpp"
 
 #define debug 1
-const uint8_t ALL_LOADS_OFF_COMMAND = 255u;
+const uint8_t ALL_LOADS_CONTROL_COMMAND = 255u;
 const uint8_t MAX_NUMBER_OF_LOADS = 24u;
 
 void user_input_init(void)
@@ -30,29 +30,28 @@ void user_input_update(void)
     {
         u32_internal_timer = 0;
 #if debug
-        static uint32_t x = 0;
-        shift_registers_set(x);
-        Serial.println(x);
-        if (x >= (MAX_NUMBER_OF_LOADS - 1))
+        static uint8_t x = 0;
+        if (x >= MAX_NUMBER_OF_LOADS)
         {
-            x = 0;
             shift_registers_clear();
+            x = 0;
         }
         else
         {
+            shift_registers_set(x);
             x++;
         }
 #else
         if (blutooth_module_dataReceivedFlag_get() == true)
         {
             uint8_t u8_received_date = blutooth_module_data_get();
-            if (u8_received_date == ALL_LOADS_OFF_COMMAND)
+            if (u8_received_date == ALL_LOADS_CONTROL_COMMAND)
             {
                 shift_registers_clear();
             }
             else if (u8_received_date < MAX_NUMBER_OF_LOADS)
             {
-                shift_registers_set(static_cast<uint32_t>(u8_received_date));
+                shift_registers_set(u8_received_date);
             }
             else
             {

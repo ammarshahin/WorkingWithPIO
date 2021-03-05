@@ -10,6 +10,8 @@
  */
 #include "../include/shift_registers.hpp"
 
+#define debug 1
+
 const uint8_t SHIFT_DATA_PIN = 2, SHIFT_ENABLE_PIN = 3, SHIFT_CLK_PIN = 4;
 static volatile uint32_t gu32_internalBuffer;
 
@@ -26,10 +28,15 @@ void shift_registers_init(void)
     pinMode(SHIFT_ENABLE_PIN, OUTPUT);
 }
 
-void shift_registers_set(uint32_t data)
+void shift_registers_set(uint8_t data)
 {
-    gu32_internalBuffer |= (1 << data);
+    gu32_internalBuffer |= (static_cast<uint32_t>(1) << data);
     shift_registers_out();
+
+#if debug
+    Serial.println(data);
+    Serial.println(gu32_internalBuffer);
+#endif
 }
 
 void shift_registers_clear()

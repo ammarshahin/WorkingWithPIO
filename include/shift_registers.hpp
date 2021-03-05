@@ -15,7 +15,7 @@
 #include "utils.hpp"
 
 void shift_registers_init(void);
-void shift_registers_set(uint32_t data);
+void shift_registers_set(uint8_t data);
 void shift_registers_clear(void);
 void shift_registers_out(void);
 
